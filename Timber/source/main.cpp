@@ -11,8 +11,9 @@
 #include <vector>
 #include <math.h>
 
-#define WINDOW_WITDH 1920
-#define WINDOW_HEIGHT 1080
+// 1280×720 | 1920x1080
+#define WINDOW_WITDH 1280
+#define WINDOW_HEIGHT 720
 #define BEE_LEVEL 880
 #define CLOUD_LEVEL 480
 
