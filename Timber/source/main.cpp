@@ -10,10 +10,10 @@
 #include <stdio.h>
 #include <vector>
 #include <math.h>
-
+#include <stdio.h>
 // 1280×720 | 1920x1080
-#define WINDOW_WITDH 1280
-#define WINDOW_HEIGHT 720
+#define WINDOW_WITDH 1920
+#define WINDOW_HEIGHT 1080
 #define BEE_LEVEL 880
 #define CLOUD_LEVEL 480
 
@@ -35,7 +35,7 @@ void speedRandomizer(int *speedX, int *speedY, const int minSpeed, const int max
     *speedY = rand()%(maxSpeed - minSpeed) + minSpeed;
 }
 void positionRandomizer(int *posX, int *posY){
-    *posX = rand()%WINDOW_WITDH;
+    *posX = rand()%(WINDOW_WITDH - 100);
     *posY = rand()%(BEE_LEVEL - CLOUD_LEVEL) + CLOUD_LEVEL;
 }
 
@@ -72,12 +72,15 @@ bool beeMove(Sprite *bee, int beeSpeedX, int beeSpeedY, int posX, int posY, Time
         bee->setPosition({bee->getPosition().x, float(posY)});
     else
         bee->setPosition({bee->getPosition().x, bee->getPosition().y + speedPerFrameY});
-
+    fprintf(stdout, "x: %f, y: %f\n", bee->getPosition().x, bee->getPosition().y);
     if(bee->getPosition().x == posX && bee->getPosition().y == posY)
         return true;
     else
         return false;
 }
+// To Do:
+// Make classes for all objects 
+// Fix a Makefile for compiling several files and making a static libraries
 
 int main()
 {
@@ -129,10 +132,11 @@ int main()
                 window.close();
         }
         Time deltaTime = clock.reset();
-        if (beeMove(beeSprite, beeSpeedX, beeSpeedY, destinationX, destinationY, deltaTime)){
-            positionRandomizer(&destinationX, &destinationY);
-            speedRandomizer(&beeSpeedX, &beeSpeedY, beeMinSpeed, beeMaxSpeed);
-        }
+        //if (beeMove(sprites.back(), beeSpeedX, beeSpeedY, destinationX, destinationY, deltaTime)){
+        //    positionRandomizer(&destinationX, &destinationY);
+        //    speedRandomizer(&beeSpeedX, &beeSpeedY, beeMinSpeed, beeMaxSpeed);
+        //}
+        sprites.back()->move(Vector2f{1, 0});
         window.clear();
         for(Sprite *sprite : sprites){
             window.draw(*sprite);
