@@ -19,19 +19,26 @@ CXX := g++
 CC := gcc
 CXXFLAGS := -std=c++17 -Wall
 LDFLAGS := -lsfml-graphics -lsfml-window -lsfml-system
+AR:= ar rcs
 TARGET := timber.out
 SRC := main.cpp
 OBJ := $(SRC:.cpp=.o)
+LIB := libasset.cpp
+LIB_OBJ:= $(LIB:.cpp=.o)
+LIB_A:= $(LIB_OBJ:.o=.a)
+LIB_LINK:= -lasset
 
 all: $(TARGET)
 
 # Линковка
-$(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $@ $(LDFLAGS)
+$(TARGET): $(OBJ) $(LIB_A)
+	$(CXX) $(OBJ) -o $@ $(LDFLAGS) -L. $(LIB_LINK)
 
+$(LIB_A): $(LIB_OBJ)
+	$(AR) $@ $<
 # Компиляция
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ) $(TARGET)
+	rm -rf $(OBJ) $(TARGET) $(LIB_OBJ) $(LIB_A)
