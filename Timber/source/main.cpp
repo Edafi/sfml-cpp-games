@@ -7,11 +7,11 @@ using namespace sf;
 int main() {
     VideoMode vm(Vector2u{WINDOW_WIDTH, WINDOW_HEIGHT});
     RenderWindow window(vm, "Timber!", State::Fullscreen);
-    Asset background{};
+    Asset background;
     background.setPos(100, 100);   
-    Texture tex("../graphics/coconut.png");
-    Sprite sprite(tex);
-    sprite.setPosition(Vector2f{0, 0});
+    //Texture tex("../graphics/coconut.png");
+    //Sprite sprite(tex);
+    //sprite.setPosition(Vector2f{0, 0});
 
     while (window.isOpen()) {
         // USER INPUT HERE
@@ -32,7 +32,7 @@ int main() {
         window.clear();
         //  Rendering 
         window.draw(background.getSprite());
-        fprintf(stdout, "%d\n", sizeof(background.getSprite()));
+        //fprintf(stdout, "%ld\n", sizeof(background.getSprite()));
         //window.draw(sprite);
         window.display();
     }

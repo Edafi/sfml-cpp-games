@@ -4,9 +4,7 @@
 #include <cstdio>
 #include "libasset.hpp"
 
-#define COCONUT "../graphics/coconut.png"
-
-Asset::Asset(std::string png_path = COCONUT) : sprite{texture} {
+Asset::Asset(std::string png_path) : sprite{texture} {
     this->png_path = png_path;
     fprintf(stdout, "Path is: %s\n", png_path.c_str());
     loadTexture();
@@ -24,6 +22,7 @@ void Asset::loadTexture() {
         fprintf(stderr, "Error: couldn't load texture, path: %s", this->png_path.c_str());
         exit(-1);
     }
+    fprintf(stdout, "Loaded: %s\n", png_path.c_str());
 }
 
 void Asset::makeSprite() {
@@ -35,6 +34,6 @@ void Asset::setPos(float x, float y) {
 }   
 
 sf::Sprite Asset::getSprite() {
-    return sprite;
+    return this->sprite;
 }
 
