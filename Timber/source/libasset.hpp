@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-#define COCONUT "../graphics/coconut.png"
+#define COCONUT "../graphics/background.png"
 
 class Asset {
 private:
@@ -13,11 +13,11 @@ private:
     sf::Sprite sprite;
 public:
     Asset(std::string png_path = COCONUT);
-    Asset();
     void loadTexture();
     void makeSprite();
     void setPos(float, float);
-    sf::Sprite getSprite();
+    sf::Sprite *getSprite();
+    void spriteDel();
 };
 
 #endif

@@ -7,8 +7,10 @@ using namespace sf;
 int main() {
     VideoMode vm(Vector2u{WINDOW_WIDTH, WINDOW_HEIGHT});
     RenderWindow window(vm, "Timber!", State::Fullscreen);
-    Asset background;
-    background.setPos(100, 100);   
+    Asset background("../graphics/background.png");
+    background.setPos(0, 0);
+    Asset coconut("../graphics/coconut.png");
+    coconut.setPos(100, 100);
     //Texture tex("../graphics/coconut.png");
     //Sprite sprite(tex);
     //sprite.setPosition(Vector2f{0, 0});
@@ -31,9 +33,8 @@ int main() {
         //  Cleaning screen from previous frame
         window.clear();
         //  Rendering 
-        window.draw(background.getSprite());
-        //fprintf(stdout, "%ld\n", sizeof(background.getSprite()));
-        //window.draw(sprite);
+        window.draw(*(background.getSprite()));
+        window.draw(*(coconut.getSprite()));
         window.display();
     }
     //delete(background);
