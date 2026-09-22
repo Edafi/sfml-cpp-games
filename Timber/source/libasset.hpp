@@ -18,6 +18,7 @@ public:
     void setPos(float, float);
     sf::Sprite *getSprite();
     void spriteDel();
+    void moveSprite(float, float);
 };
 
 #endif

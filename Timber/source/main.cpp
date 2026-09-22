@@ -7,10 +7,11 @@ using namespace sf;
 int main() {
     VideoMode vm(Vector2u{WINDOW_WIDTH, WINDOW_HEIGHT});
     RenderWindow window(vm, "Timber!", State::Fullscreen);
-    Asset background("../graphics/background.png");
+    Asset background;
     background.setPos(0, 0);
     Asset coconut("../graphics/coconut.png");
     coconut.setPos(100, 100);
+    coconut.getSprite()->setScale(sf::Vector2f{0.5, 0.5});
     //Texture tex("../graphics/coconut.png");
     //Sprite sprite(tex);
     //sprite.setPosition(Vector2f{0, 0});
@@ -21,11 +22,12 @@ int main() {
         // V    V   V   V
         if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
             window.close();
-
+        
+        coconut.moveSprite(1, 1);
         /*
          *  UPDATING ALL OBJECTS
          */ 
-
+        
         /*
          *  RENDERING ON SCREEN
          */

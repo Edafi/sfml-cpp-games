@@ -28,8 +28,12 @@ void Asset::makeSprite() {
 
 void Asset::setPos(float x, float y) {
     this->sprite.setPosition(sf::Vector2f{x, y});
-}   
+}
+
+void Asset::moveSprite(float x, float y) {
+    this->sprite.move(sf::Vector2f{x, y});
+}
 
 sf::Sprite *Asset::getSprite() {
     return &(this->sprite);
-}
+    }
